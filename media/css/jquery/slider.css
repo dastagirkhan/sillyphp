@@ -1,0 +1,138 @@
+.nav {
+    list-style-type: none;
+    top: 8px;
+}
+
+.nav li {
+    marign: 0;
+    padding: 0;
+}
+
+.nav a {
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 1;
+    font-weight: 800;
+    color: #afb2b6;
+    text-decoration: none;
+    display: block;
+    float: left;
+    padding: 6px 15px 2px;
+    border-radius: 10px;
+    margin: 0 5px;
+    text-shadow: 0 1px 4px rgba(0,0,0,.8);
+}
+
+.nav .active a, .nav a:hover { color: #fff }
+
+.nav a.active {
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px rgba(255,255,255,.1),inset 0 -1px 4px rgba(0,0,0,1);
+    background-color: #111;
+}
+
+.navbar .nav > li > a {
+  padding:10px;
+}
+
+.navbar-inverse .brand, .navbar-inverse .nav > li > a.donate.btn {
+  color:#fff;
+  position: relative;
+  top:-4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding:8px 10px;
+}
+
+/* Prevents the slideshow from flashing on load */
+#slides {
+  display:none;
+}
+
+#slides .slidesjs-container {
+  margin-bottom:10px;
+}
+
+ a.slidesjs-next,
+    a.slidesjs-previous,
+    a.slidesjs-play,
+    a.slidesjs-stop {
+      background-image: url(../../img/slider/btns-next-prev.png);
+      background-repeat: no-repeat;
+      display:block;
+      width:12px;
+      height:18px;
+      overflow: hidden;
+      text-indent: -9999px;
+      float: left;
+      margin-right:5px;
+    }
+
+    a.slidesjs-next {
+      margin-right:10px;
+      background-position: -12px 0;
+    }
+
+    a:hover.slidesjs-next {
+      background-position: -12px -18px;
+    }
+
+    a.slidesjs-previous {
+      background-position: 0 0;
+    }
+
+    a:hover.slidesjs-previous {
+      background-position: 0 -18px;
+    }
+
+    a.slidesjs-play {
+      width:15px;
+      background-position: -25px 0;
+    }
+
+    a:hover.slidesjs-play {
+      background-position: -25px -18px;
+    }
+
+    a.slidesjs-stop {
+      width:18px;
+      background-position: -41px 0;
+    }
+
+    a:hover.slidesjs-stop {
+      background-position: -41px -18px;
+    }
+
+.slidesjs-pagination {
+    margin:6px 0 0;
+    float: right;
+    list-style: none;
+}
+
+.slidesjs-pagination li {
+    float: left;
+    margin: 0 1px;
+}
+
+.slidesjs-pagination li a {
+    display: block;
+    width: 13px;
+    height: 0;
+    padding-top: 13px;
+    background-image: url(../../img/slider/pagination.png);
+    background-position: 0 0;
+    float: left;
+    overflow: hidden;
+}
+
+.slidesjs-pagination li a.active, .slidesjs-pagination li a:hover.active { background-position: 0 -13px }
+
+.slidesjs-pagination li a:hover { background-position: 0 -26px }
+
+#slides a:link, #slides a:visited { color: #333 }
+
+#slides a:hover, #slides a:active { color: #9e2020 }
+
+/

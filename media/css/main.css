@@ -1,0 +1,230 @@
+/* Global Styles */
+* {
+	padding: 0;
+	margin: 0;
+	outline: 0;
+}
+
+body {
+	background: url(../img/main/bg-body.png);
+	font-size: 12px;
+	font-family: 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, Arial,
+		san-serif;
+	color: #000000;
+}
+
+a img {
+	border: 0;
+}
+
+a:focus {
+	outline: 1px dotted;
+}
+
+a {
+	color: #717171;
+	text-decoration: none;
+	border: 0;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a span {
+	font-size: 90%;
+}
+
+h1 {
+	font-size: 25px;
+}
+
+h2 {
+	font-size: 23px;
+}
+
+h3 {
+	font-size: 21px;
+}
+
+h4 {
+	font-size: 19px;
+}
+
+h5 {
+	font-size: 17px;
+}
+
+h6 {
+	font-size: 15px;
+}
+
+ol {
+	list-style: decimal;
+}
+
+ul {
+	list-style: disc;
+}
+
+p,li,dl {
+	line-height: 18px;
+}
+
+p,dl,hr,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset,img {
+	margin-bottom: 20px;
+}
+
+#wrapper {
+	margin-top: 7px;
+}
+
+ul li ul,ol li ol {
+	margin-bottom: 0px;
+}
+
+ol {
+	padding: 0 0 0 5px;
+}
+
+input,textarea,select {
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+}
+
+@font-face {
+	font-family: 'GoodDogRegular';
+	src: url('fonts/gooddog/GoodDog-webfont.eot');
+	src: url('fonts/gooddog/GoodDog-webfont.eot?#iefix')
+		format('embedded-opentype'), url('fonts/gooddog/GoodDog-webfont.woff')
+		format('woff'), url('fonts/gooddog/GoodDog-webfont.ttf')
+		format('truetype'),
+		url('fonts/gooddog/GoodDog-webfont.svg#GoodDogRegular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: 'FFFTusjBold';
+    src: url('fonts/tusj/FFF_Tusj-webfont.eot');
+    src: url('fonts/tusj/FFF_Tusj-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/tusj/FFF_Tusj-webfont.woff') format('woff'),
+         url('fonts/tusj/FFF_Tusj-webfont.ttf') format('truetype'),
+         url('fonts/tusj/FFF_Tusj-webfont.svg#FFFTusjBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'QuicksandLight';
+    src: url('fonts/quicksand/Quicksand_Light-webfont.eot');
+    src: url('fonts/quicksand/Quicksand_Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/quicksand/Quicksand_Light-webfont.woff') format('woff'),
+         url('fonts/quicksand/Quicksand_Light-webfont.ttf') format('truetype'),
+         url('fonts/quicksand/Quicksand_Light-webfont.svg#QuicksandLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+/** Header **/
+div.header,div.nav,div.content,div.footer,div.settings {
+	margin: 0px auto;
+	width: 950px;
+}
+
+div.header {
+	height: 80px;
+}
+
+p.title {
+	font-family: GoodDogRegular;
+	font-size: 50px;
+	margin-top: 20px;
+	width: 350px;
+	float: left;
+}
+
+div.header a:hover {
+	color: #979797;
+}
+
+sub {
+	font-size: 30px;
+}
+
+sup {
+	font-size: 20px;
+}
+div.settings p{	
+	border: 1px solid #ccc;
+	padding: 5px;
+	
+}
+div.settings img{
+	padding: 0px;
+    margin: 0px;
+	margin-top: -4px;
+    vertical-align: middle;
+}
+
+/** End Header **/ /** Navigation **/
+div.nav {
+	height: 40px;
+}
+
+#nav {
+	width: 100%;
+	float: left;
+	margin: 0 0 3em 0;
+	padding: 0;
+	list-style: none;
+	background-color: #f2f2f2;
+	border-bottom: 1px solid #ccc;
+}
+
+#nav li {
+	float: left;
+	list-style: none;
+}
+
+#nav li a {
+	display: block;
+	padding: 8px 15px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #069;
+	border-right: 1px solid #ccc;
+}
+
+#nav li a:hover {
+	color: #c00;
+	background-color: #fff;
+}
+
+/** End Navigation **/ /** content **/
+div.content {
+	height: 500px;
+	border: 1px solid #ccc;
+	background: url('../img/main/paperbg.gif');
+}
+
+div.content div{
+	float: left;
+}
+div.home-left{
+	height:394px;
+	width:100%;
+	text-align: center;
+	margin-top: 30px;
+}
+div.home-left p{
+	font-family:QuicksandLight;
+	font-size: 25px;	
+}
+
+/** Footer **/
+div.footer p {
+	font-size: 10px;
+	text-align: center;
+	margin-top: 10px;
+}
