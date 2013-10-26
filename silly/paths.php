@@ -39,6 +39,12 @@ define ( 'MODEL', ROOT . "/model" );
 #media directory
 define ( 'MEDIA', ROOT . "/media" );
 
+#media directory
+define ( 'TMP', ROOT . "/tmp" );
+
+#media directory
+define ( 'CACHE', TMP . "/cache" );
+
 #css directory
 define ( 'CSS', MEDIA . "/css" );
 
