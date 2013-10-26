@@ -71,6 +71,10 @@ foreach ( glob ( SILLY_CORE . "/*.php" ) as $filename ) {
 	require_once $filename;
 }
 
+#cache
+if(CACHE_ENABLE)
+$cache = new cache();
+
 #initializing cookie
 cookie::init();
 

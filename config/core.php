@@ -30,6 +30,10 @@ error_reporting(0);
 #Set your defualt controller #
 ##############################
 define ( 'DEFAULT_CONTROLLER', "framework" );
+##############################
+#cache enable: true/false#
+##############################
+define ( 'CACHE_ENABLE', true );
 ################################################
 #			SET THE DEFAULT TIMEZONE		   #
 ################################################

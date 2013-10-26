@@ -84,6 +84,9 @@ class dispatcher {
 $parse = new dispatcher ();
 $obj = $parse->get ();
 $obj->params = $params = $parse->params;
+$obj->url = $_SERVER ['REQUEST_URI'];
+if (isset ( $_SERVER ['HTTP_REFERER'] ))
+	$obj->referer = $_SERVER ['REQUEST_URI'];
 if (function_exists ( 'apache_get_modules' ))
 	$isrewrite = in_array ( 'mod_rewrite', apache_get_modules () ) === true;
 else
@@ -94,55 +97,68 @@ else
 	$isdbconfigured = false;
 if (! empty ( $_SERVER ['HTTP_X_REQUESTED_WITH'] ) && strtolower ( $_SERVER ['HTTP_X_REQUESTED_WITH'] ) == 'xmlhttprequest')
 	$obj->layout = "ajax";
-ob_start ();
-$view = true;
-if ($session->has ( 'logged' )) {
-	if (isset ( $obj->allow ))
-		unset ( $obj->allow );
+
+if (CACHE_ENABLE) {
+	if (is_object ( $cache ))
+		$content_for_layout = $cache->read ( Inflector::underscore ( $obj->url ) );
 }
-if (isset ( $obj->allow )) {
-	if (isset ( $params ["action"] ) && count ( $obj->allow ) > 0) {
-		if (array_search ( $params ["action"], $obj->allow ) === false) {
-			unset ( $params ["action"] );
-			unset ( $obj->action );
+
+if (! isset ( $content_for_layout ) || $content_for_layout === false) {
+	ob_start ();
+	$view = true;
+	if ($session->has ( 'logged' )) {
+		if (isset ( $obj->allow ))
+			unset ( $obj->allow );
+	}
+	if (isset ( $obj->allow )) {
+		if (isset ( $params ["action"] ) && count ( $obj->allow ) > 0) {
+			if (array_search ( $params ["action"], $obj->allow ) === false) {
+				unset ( $params ["action"] );
+				unset ( $obj->action );
+			}
+		}
+		if (isset ( $obj->action ) && count ( $obj->allow ) > 0) {
+			if (array_search ( $obj->action, $obj->allow ) === false)
+				unset ( $obj->action );
 		}
 	}
-	if (isset ( $obj->action ) && count ( $obj->allow ) > 0) {
-		if (array_search ( $obj->action, $obj->allow ) === false)
-			unset ( $obj->action );
-	}
-}
-if (isset ( $params ["action"] )) {
-	if (method_exists ( $obj, $params ["action"] )) {
-		$obj->action = $params ["action"];
-		$obj->{$params ["action"]} ();
+	if (isset ( $params ["action"] )) {
+		if (method_exists ( $obj, $params ["action"] )) {
+			$obj->action = $params ["action"];
+			$obj->{$params ["action"]} ();
+		} else {
+			$obj->error ();
+			$view = false;
+		}
+	} else if (isset ( $obj->action )) {
+		$obj->action = $obj->action;
+		$obj->{$obj->action} ();
+	} else if (method_exists ( $obj, DEFAULT_ACTION )) {
+		$obj->action = DEFAULT_ACTION;
+		$obj->{DEFAULT_ACTION} ();
+	} else if (! $session->has ( 'logged' )) {
+		header ( "Location:http://" . $_SERVER ['HTTP_HOST'] );
+		exit ();
 	} else {
 		$obj->error ();
 		$view = false;
 	}
-} else if (isset ( $obj->action )) {
-	$obj->action = $obj->action;
-	$obj->{$obj->action} ();
-} else if (method_exists ( $obj, DEFAULT_ACTION )) {
-	$obj->action = DEFAULT_ACTION;
-	$obj->{DEFAULT_ACTION} ();
-} else if (! $session->has ( 'logged' )) {
-	header ( "Location:http://" . $_SERVER ['HTTP_HOST'] );
-	exit ();
-} else {
-	$obj->error ();
-	$view = false;
+	if (isset ( $obj->vars ))
+		extract ( $obj->vars );
+	if (isset ( $obj->params ['controller'] ) && $view && $obj->layout != "ajax") {
+		$title_for_layout = $obj->action;
+		$obj->view = VIEW . '/' . $obj->params ['controller'] . '/' . $obj->action . '.php';
+		if (! file_exists ( $obj->view )) {
+			$title_for_layout = 'error';
+			$obj->error ();
+		} else
+			include $obj->view;
+	}
+	$content_for_layout = ob_get_clean ();
+	if (CACHE_ENABLE) {
+		if (is_object ( $cache )) {
+			$cache->write ( Inflector::underscore ( $obj->url ), $content_for_layout );
+		}
+	}
 }
-if (isset ( $obj->vars ))
-	extract ( $obj->vars );
-if (isset ( $obj->params ['controller'] ) && $view && $obj->layout != "ajax") {
-	$title_for_layout = $obj->action;
-	$obj->view = VIEW . '/' . $obj->params ['controller'] . '/' . $obj->action . '.php';
-	if (! file_exists ( $obj->view )) {
-		$title_for_layout = 'error';
-		$obj->error ();
-	} else
-		include $obj->view;
-}
-$content_for_layout = ob_get_clean ();
 ?>
